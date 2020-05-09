@@ -1,0 +1,161 @@
+.main-wrap{
+    height: calc(100% - 50px);
+    width: 100%;
+}
+.main-wrap .left-nav{
+    height: 100%;
+    width: 200px;
+    border-right: 1px solid rgba(235, 235, 235, 0.9);
+    background-color: #0f172b;
+}
+.main-wrap .left-nav ul{
+    border-right: none;
+}
+.main-wrap .left-nav ul .el-menu-item{
+    font-size: 16px;
+}
+.main-wrap .right-content{
+    width: calc(100% - 200px);
+    height: 100%;
+    overflow: hidden;
+}
+.main-wrap .right-content .table-content-bottom{
+    text-align: center;
+}
+.common-bg{
+    background: linear-gradient(53deg, rgba(20,5,60,0.1),rgba(38,12,102,0.1), rgba(91,188,205,0.1),rgba(38,12,102,0.1), rgba(20,5,60,0.1));
+}
+
+
+.ces-layout{
+    width:100%;
+    height:100%;
+}
+/* 头部 */
+.ces-header{
+    border-bottom: 1px transparent solid;
+    border-image: -webkit-linear-gradient(to right , #3c486d, #070916) 30 30;
+    border-image: -moz-linear-gradient(to right, #3c486d, #070916) 30 30;
+    border-image: linear-gradient(to right, #3c486d, #070916 ) 30 30;
+    background: #070916;
+    display:flex;
+}
+.ces-header__title{
+    font-size: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    background: -webkit-linear-gradient(top, #91f5ff, #1cbef6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    height: 69px;
+    line-height: 70px;
+    padding-left: 20px;
+}
+.ces-header__tail{
+    font-size: 15px;
+    padding-right: 20px;
+    line-height: 70px;
+    text-align: right;
+    cursor: pointer;
+    color: #ffffff;
+}
+.ces-body{
+    display:flex;
+    height:calc(100% - 71px);
+    width:100%;
+}
+/* 菜单导航 */
+.ces-nav{
+    width:200px;
+    height:100%;
+    background-color: #0f172b;
+}
+.ces-page{
+    height:100%;
+    width:calc(100% - 200px);
+}
+
+.ces-main{
+    padding:20px;
+    height:calc(100% - 40px);
+    display:flex;
+    flex-direction: column;
+    
+}
+
+/* 查询表单 */
+.ces-search{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 操作按钮 */
+.ces-handle{
+    width:100%;
+    height:40px;
+    align-items: center;
+    display:flex;
+}
+/* 数据表格 */
+.ces-table-page{
+    flex:1;
+    display:flex;
+    flex-direction: column;
+}
+.ces-table{
+    height:calc(100% - 90px);
+    flex:1;
+}
+.ces-pagination{
+    height:50px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+/* 弹窗 */
+
+.ces-mask{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.65);
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+.ces-modal-close{
+    cursor: pointer;
+}
+.ces-modal-wrap{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ces-modal{
+    min-height: 300px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.ces-modal__header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.ces-modal__body{
+    flex: 1;
+}
+.ces-modal__footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: right;
+}
