@@ -1,7 +1,7 @@
 
 // import { formateDateTime } from '@/assets/js/formatDateTime'
 const sexs=[{label:'男',value:'M'},{label:'女',value:'F'}]
-const intersts=[{label:'羽毛球',value:'badminton'},{label:'篮球',value:'basketball'},{label:'女',value:'F'},{label:'美丽',value:'M'}]
+const intersts=[{label:'羽毛球',value:'badminton'},{label:'篮球',value:'basketball'},{label:'书籍',value:'book'},{label:'游戏',value:'game'}]
 
 const formatSex=row=>{
   let info = ' '
@@ -13,8 +13,11 @@ const formatSex=row=>{
 const formatInterst=row=>{
   let info = []
   intersts.forEach(item=>{
-    if(row.interst.includes(item.value)) info.push(item.label)
+    row.interst.forEach(i=>{
+      if(i===item.value) info.push(item.label)
+    })
   })
+  if(info.length===0) return ' '
   return info.join()
 }
 const mutationTypes = {
@@ -42,15 +45,7 @@ const mutationTypes = {
     ],
     
     // 表格
-    TABLE_DATA:[
-      // {id:'001',name:'张三1',age:'12',sex:'男',sexId:'M',interst:'女',interstIds:['F']},
-      // {id:'002',name:'筱华1',age:'27',sex:'女',sexId:'F',interst:'羽毛球',interstIds:['badminton']},
-      // {id:'003',name:'张三2',age:'12',sex:'男',sexId:'M',interst:'女',interstIds:['F']},
-      // {id:'004',name:'筱华2',age:'27',sex:'女',sexId:'F',interst:'羽毛球',interstIds:['badminton']},
-      // {id:'005',name:'筱华3',age:'27',sex:'女',sexId:'F',interst:'羽毛球',interstIds:['badminton']},
-      // {id:'006',name:'筱华4',age:'27',sex:'女',sexId:'F',interst:'羽毛球',interstIds:['badminton']},
-      // {id:'007',name:'筱华5',age:'27',sex:'女',sexId:'F',interst:'羽毛球',interstIds:['badminton']}
-    ],
+    TABLE_DATA:[],
     TABLE_COLS:[
       {label:'姓名',prop:'name'},
       {label:'年龄',prop:'age'},
@@ -58,18 +53,18 @@ const mutationTypes = {
       {label:'爱好',prop:'interst',formatter:row=>formatInterst(row)},
       {label:'操作',type:'button',width:'150px',btnList:[
         {type:'primary',label:'编辑',handle:(that,row)=>that.showEditModal(row),isDisabled:function(row){
-          if(row.sex==='M'){
-            return true
-          }else if(row.sex==='F'){
-            return false
-          }
+          // if(row.sex==='M'){
+          //   return true
+          // }else if(row.sex==='F'){
+          //   return false
+          // }
         }},
         {type:'danger',label:'删除',handle:(that,row)=>that.confirmDel(row),isDisabled:function(row){
-          if(row.sex==='M'){
-            return false
-          }else if(row.sex==='F'){
-            return true
-          }
+          // if(row.sex==='M'){
+          //   return false
+          // }else if(row.sex==='F'){
+          //   return true
+          // }
         }}
       ]}
     ],

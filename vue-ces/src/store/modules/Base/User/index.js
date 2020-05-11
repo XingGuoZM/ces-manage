@@ -70,7 +70,7 @@ const actions = {
   },
   async editData ({commit,dispatch, state}) {
     await API.User.edit(state.editData)
-    // commit(initTypes.HIDE_EDIT_MODAL)
+    commit(initTypes.HIDE_EDIT_MODAL)
     dispatch('getData')
   },
   async delData ({commit,dispatch, state},id) {
