@@ -69,7 +69,9 @@ const mutationTypes = {
       ]}
     ],
     TABLE_HANDLES:[
-      {label:'新增',type:'primary',handle:(that,row)=>that.showEditModal()}
+      {label:'新增',type:'primary',handle:(that,row)=>that.showEditModal()},
+      {label:'上传Excel',type:'primary',handle:(that,row)=>that.uploadExcel()},
+      {label:'下载模版',type:'primary',handle:(that,row)=>that.downloadExcel()}
     ],
     TABLE_PAGE: {
       pageSize: 10,

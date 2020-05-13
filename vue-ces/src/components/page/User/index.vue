@@ -61,7 +61,7 @@ export default {
       'editForm','editData','editRules'])
   },
   methods:{
-    ...mapActions(['init','showEditModal','hideEditModal','getData','resetData','validateAdd','confirmDel','validateEdit'])
+    ...mapActions(['init','showEditModal','hideEditModal','getData','resetData','validateAdd','confirmDel','downloadExcel','validateEdit'])
   },
   mounted(){
     this.init()

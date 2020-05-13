@@ -96,6 +96,12 @@ const actions = {
       }
     })
   },
+  uploadExcel(){
+
+  },
+  async downloadExcel(){
+    await API.User.download()
+  },
   showEditModal({commit},row){
     commit(initTypes.SHOW_EDIT_MODAL,{row})
   },

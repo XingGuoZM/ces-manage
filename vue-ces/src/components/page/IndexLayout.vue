@@ -2,7 +2,7 @@
   <section class="main-wrap">
     <div class="nav-all" style="display:flex;">
       <div style="width:200px;">
-        <span class="nav-text">后台管理脚手架</span>
+        <span class="nav-text">后台管理系统</span>
       </div>
       <div  style="width:calc(100% - 350px);">
         <ul class="nav-list">

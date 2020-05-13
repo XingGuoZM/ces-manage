@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "debug": "^2.6.3",
+    "exceljs": "^3.9.0",
     "koa": "^2.2.0",
+    "koa-body": "^4.1.1",
     "koa-bodyparser": "^3.2.0",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
@@ -18,11 +20,12 @@
     "koa-onerror": "^1.2.1",
     "koa-router": "^7.1.1",
     "koa-static": "^3.0.0",
-    "koa-views": "^5.2.1",
+    "koa-webpack": "^5.3.0",
     "koa2-cors": "^2.0.6",
-    "mysql": "^2.17.1"
+    "webpack": "^4.6.0"
   },
   "devDependencies": {
+    "koa-webpack": "^5.3.0",
     "nodemon": "^1.8.1"
   }
 }

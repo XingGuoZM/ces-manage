@@ -29,9 +29,7 @@ const modalLoading = {
   target: '.ces-modal__body'
 }
 // 下载
-const download = (api, param) => {
-  // let url = window.ApiUrl + api + `?token=${localStorage.getItem('token')}` + param
-  let url = window.ApiUrl + api + param
+const download = (url) => {
   let downloadElement = document.createElement('a')
   downloadElement.href = url
   document.body.appendChild(downloadElement)
@@ -46,11 +44,7 @@ export function fetch (options) {
   let commitLoading = null
   if (options.tableLoading) loadingInstance = Loading.service(tableLoading)
   if (options.commitLoading) commitLoading = Loading.service(modalLoading)
-  // 文件下载
-  if (options.isDownload) {
-    download(options.url, '?' + data)
-    return
-  }
+
   // 文件上传
   // if (options.isUpload) {
 
@@ -85,6 +79,8 @@ export function fetch (options) {
       switch (response.data.code) {
         case 200:
           resolve(response)
+          // 文件下载
+          if (options.isDownload) download(response.data.url)
           if (options.successMsg) Message({type: 'success', message: response.data.msg, showClose: true})
           break
         default:
