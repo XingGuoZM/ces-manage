@@ -1,12 +1,8 @@
 import Vue from 'vue'
 import App from './App'
-// HTML css reset
 import './assets/css/reset.css'
-// ElementUI components import
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-// LNavRContentLayout
-// import './assets/css/LNavRContentLayout.styl'
 
 // 搜索表单
 import './assets/css/Form/search.css'
