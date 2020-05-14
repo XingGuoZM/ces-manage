@@ -59,7 +59,7 @@
     </el-form>
     <el-form inline v-if='isHandle'>
         <el-form-item v-for='item in searchHandle' :key="item.label">
-            <el-button :type="item.type" :size="size || item.size" @click='item.handle(that)'>{{item.label}}</el-button>
+            <el-button :type="item.type || type" :size="item.size || size" @click='item.handle(that)'>{{item.label}}</el-button>
         </el-form-item>
     </el-form>
 </div>
@@ -76,6 +76,10 @@ export default {
         labelWidth:{
             type:String,
             default:'100px'
+        },
+        type:{
+            type:String,
+            default:'primary'
         },
         size:{
             type:String,

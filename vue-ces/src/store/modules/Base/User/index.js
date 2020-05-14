@@ -2,16 +2,10 @@
 import API from '@/axios/api'
 import {MessageBox, Message} from 'element-ui'
 import mutationTypes from '@/store/mutation-types'
+import  initTypes from '@/store/init-types'
 import {deepClone} from '@/assets/js/deepClone'
 
-const initTypes = {
-  QUERY: 'QUERY',
-  ADD: 'ADD',
-  EDIT: 'EDIT',
-  DELETE: 'DELETE',
-  SHOW_EDIT_MODAL:'SHOW_EDIT_MODAL',
-  HIDE_EDIT_MODAL:'HIDE_EDIT_MODAL'
-}
+
 // initial state
 const state = {
   // 查询表单
@@ -56,11 +50,11 @@ const actions = {
   },
   async getData ({ commit, state }) {
       let res=await API.User.query({...state.searchData,...state.tablePage})
-      
-      state.tableData=res.data.data
-      state.tablePage.total=res.data.total
-      state.tablePage.pageNum=res.data.pageNum
-
+      const {tableData,tablePage}=res.data.data;
+      state.tableData=deepClone(tableData)
+      state.tablePage=deepClone(tablePage)
+      // state.tablePage.total=res.data.total
+      // state.tablePage.pageNum=res.data.pageNum
   },
   async addData ({dispatch, commit, state}) {
     await API.User.add(state.editData)
@@ -82,36 +76,35 @@ const actions = {
     state.searchData=deepClone(mutationTypes.SEARCH_DATA)
     dispatch('getData')
   },
-  validateAdd({dispatch,state},that){
+  validateEdit({dispatch, state},{that,type}){
     that.$refs.editForm.validate(valid=>{
       if(valid){
-        dispatch('addData')
+        switch(type){
+          case initTypes.ADD:
+              dispatch('addData')
+            break;
+          case initTypes.EDIT:
+              dispatch('editData')
+            break;
+          default:
+            break;
+        }
       }
     })
-  },
-  validateEdit({dispatch, state},that){
-    that.$refs.editForm.validate(valid=>{
-      if(valid){
-        dispatch('editData')
-      }
-    })
-  },
-  uploadExcel(){
-
   },
   async downloadExcel(){
     await API.User.download()
   },
-  showEditModal({commit},row){
-    commit(initTypes.SHOW_EDIT_MODAL,{row})
+  showEditModal({commit},{row,type}){
+    commit(initTypes.SHOW_EDIT_MODAL,{row,type})
   },
   hideEditModal({commit}){
     commit(initTypes.HIDE_EDIT_MODAL)
   },
   confirmDel ({dispatch,state},row) {
-    MessageBox.confirm('此操作将永久删除该条记录, 是否继续?', '提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
+    MessageBox.confirm(initTypes.TIPS_TEXT, initTypes.TIPS, {
+      confirmButtonText: initTypes.CONFIRM,
+      cancelButtonText: initTypes.CANCEL,
       type: 'warning'
     }).then(() => {
       dispatch('delData',row.id)
@@ -126,20 +119,35 @@ const mutations = {
   [initTypes.QUERY] (state, {tableData}) {
     state.tableData = tableData
   },
-  [initTypes.SHOW_EDIT_MODAL] (state,{row}) {
+  [initTypes.SHOW_EDIT_MODAL] (state,{row,type}) {
+    let currForm=deepClone(mutationTypes.EDIT_FORM)
     state.modalCfg.visible=true
-    if(row){
-      state.editData=row
-      state.modalCfg.title='编辑'
-      state.modalCfg.handles[0]={label:'编辑',type:'primary',size:'mini',handle:that=>that.validateEdit(that.$refs.cesEdit)}
-    }else{
-      state.editData=deepClone(mutationTypes.EDIT_DATA)
-      state.modalCfg.title='新增',
-      state.modalCfg.handles[0]={label:'新增',type:'primary',size:'mini',handle:that=>that.validateAdd(that.$refs.cesEdit)}
+    state.modalCfg.title=type
+    state.modalCfg.handles[0]={...initTypes.DEFAULT_BUTTON,label:type,handle:that=>that.validateEdit({that:that.$refs.cesEdit,type})}
+    switch(type){
+      case initTypes.ADD:
+        state.editData=deepClone(mutationTypes.EDIT_DATA)
+        state.editForm=currForm.filter(item=>item.isEdit)
+        break;
+      case initTypes.EDIT:
+        state.editData=row
+        state.editForm=currForm.filter(item=>item.isEdit)
+        break;
+      case initTypes.UPLOAD:
+        state.editForm=currForm.filter(item=>!item.isEdit)
+        break;
+      default:
+        break;
     }
   },
   [initTypes.HIDE_EDIT_MODAL] (state) {
     state.modalCfg.visible=false
+  },
+  [initTypes.SHOW_UPLOAD_MODAL](state){
+    state.modalCfg.visible=false
+  },
+  [initTypes.HIDE_UPLODAD_MODAL](state){
+
   }
 }
 

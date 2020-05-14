@@ -6,7 +6,9 @@ class UserController{
     query(ctx){
         const source=fs.readFileSync(__dirname+'/user.json');
         let src=JSON.parse(source)
+        let total=src.length;
         let {name,age,pageNum,pageSize}=ctx.request.body
+        let tableData=[],tablePage={};
         if(name){
             src=src.filter(item=>item===name);
         }
@@ -15,10 +17,14 @@ class UserController{
         }
         if(pageSize || pageNum) {
             if(!pageNum) pageNum=1;
-            src=src.slice((pageNum-1)*pageSize,pageNum*pageSize)
+            tableData=src.slice((pageNum-1)*pageSize,pageNum*pageSize)
         }
-
-        ctx.body={code:200,msg:'查询成功',data:src}
+        tablePage={
+            pageNum,
+            pageSize,
+            total
+        }
+        ctx.body={code:200,msg:'查询成功',data:{tableData,tablePage}}
     }
     add(ctx){
         let obj=ctx.request.body

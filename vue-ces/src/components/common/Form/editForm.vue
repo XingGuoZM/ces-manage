@@ -1,7 +1,10 @@
 <!-- 搜索表单 -->
 <template>
     <el-form ref='editForm' :size="size" inline :label-width="labelWidth" :model="editData" :rules="editRules">
-        <el-form-item v-for='item in editCfg' :label="item.label" :prop='item.prop' :key="item.label"  >
+        <el-form-item v-for='item in editCfg' 
+        :label="item.label" 
+        :prop='item.prop' 
+        :key="item.label">
             <!-- 输入框 -->
             <el-input v-if="item.type==='input'" v-model="editData[item.prop]" 
                 @change="item.change && item.change(editData[item.prop])"
@@ -54,6 +57,16 @@
             <el-switch v-if="item.type==='switch'" v-model="editData[item.prop]" 
                 @change="item.change && item.change(editData[item.prop])"
                 :disabled="item.disabled && item.disabled(editData)"></el-switch>
+            <!-- 上传 -->
+            <el-upload v-if="item.type==='upload'" 
+                class="upload-demo"
+                ref="upload"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :auto-upload="false">
+                <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+                <!-- <el-button style="margin-left: 10px;" size="small" type="success">上传到服务器</el-button> -->
+                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                </el-upload>
         </el-form-item>
     </el-form>
 </template>

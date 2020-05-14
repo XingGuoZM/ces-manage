@@ -1,5 +1,6 @@
 
 // import { formateDateTime } from '@/assets/js/formatDateTime'
+import initTypes from '@/store/init-types'
 const sexs=[{label:'男',value:'M'},{label:'女',value:'F'}]
 const intersts=[{label:'羽毛球',value:'badminton'},{label:'篮球',value:'basketball'},{label:'书籍',value:'book'},{label:'游戏',value:'game'}]
 
@@ -21,13 +22,9 @@ const formatInterst=row=>{
   return info.join()
 }
 const mutationTypes = {
-    QUERY: 'QUERY',
-    EDIT: 'EDIT',
-    ADD: 'ADD',
-    DEL: 'DEL',  
     
     // 搜索
-  SEARCH_FORM:[
+    SEARCH_FORM:[
       {type:'input',label:'姓名:',prop:'name',width:'180px',placeholder:'请输入姓名...',change:that=>that.getData()},
       {type:'input',label:'年龄:',prop:'age',width:'180px',placeholder:'请输入年龄...',change:that=>that.getData()},
       // {type:'radio',label:'性别:',prop:'sex',width:'180px',radios:sexs,change:that=>that.getData()},
@@ -40,8 +37,8 @@ const mutationTypes = {
       // interst:null
     },
     SEARCH_HANDLE:[
-      {label:'查询',type:'primary',handle:that=>that.getData()},
-      {label:'重置',type:'primary',handle:that=>that.resetData()}
+      {label:'查询',handle:that=>that.getData()},
+      {label:'重置',handle:that=>that.resetData()}
     ],
     
     // 表格
@@ -52,14 +49,14 @@ const mutationTypes = {
       {label:'性别',prop:'sex',formatter:row=>formatSex(row)},
       {label:'爱好',prop:'interst',formatter:row=>formatInterst(row)},
       {label:'操作',type:'button',width:'150px',btnList:[
-        {type:'primary',label:'编辑',handle:(that,row)=>that.showEditModal(row),isDisabled:function(row){
+        {label:initTypes.EDIT,handle:(that,row)=>that.showEditModal({row,type:initTypes.EDIT}),isDisabled:function(row){
           // if(row.sex==='M'){
           //   return true
           // }else if(row.sex==='F'){
           //   return false
           // }
         }},
-        {type:'danger',label:'删除',handle:(that,row)=>that.confirmDel(row),isDisabled:function(row){
+        {type:'danger',label:initTypes.DELETE,handle:(that,row)=>that.confirmDel(row),isDisabled:function(row){
           // if(row.sex==='M'){
           //   return false
           // }else if(row.sex==='F'){
@@ -69,9 +66,9 @@ const mutationTypes = {
       ]}
     ],
     TABLE_HANDLES:[
-      {label:'新增',type:'primary',handle:(that,row)=>that.showEditModal()},
-      {label:'上传Excel',type:'primary',handle:(that,row)=>that.uploadExcel()},
-      {label:'下载模版',type:'primary',handle:(that,row)=>that.downloadExcel()}
+      {label:initTypes.ADD,handle:(that,row)=>that.showEditModal({row,type:initTypes.ADD})},
+      {label:initTypes.UPLOAD,handle:(that,row)=>that.showEditModal({row,type:initTypes.UPLOAD})},
+      {label:initTypes.DOWNLOAD,handle:(that,row)=>that.downloadExcel({row,type:initTypes.DOWNLOAD})}
     ],
     TABLE_PAGE: {
       pageSize: 10,
@@ -86,13 +83,13 @@ const mutationTypes = {
         that.getData()
       }
     },
-
     //编辑表单
     EDIT_FORM:[
-      {label:'姓名',prop:'name',type:'input',width:'280px'},
-      {label:'年龄',prop:'age',type:'input',width:'280px'},
-      {label:'性别',prop:'sex',type:'radio',radios:sexs, width:'280px'},
-      {label:'爱好',prop:'interst',type:'checkbox',checkboxs:intersts,width:'280px'}
+      {label:'姓名',prop:'name',type:'input',width:'280px',isEdit:true},
+      {label:'年龄',prop:'age',type:'input',width:'280px',isEdit:true},
+      {label:'性别',prop:'sex',type:'radio',radios:sexs, width:'280px',isEdit:true},
+      {label:'爱好',prop:'interst',type:'checkbox',checkboxs:intersts,width:'280px',isEdit:true},
+      {label:'上传文件',prop:'upload',type:'upload',width:'280px',isEdit:false}
     ],
     EDIT_DATA:{
       name:null,
@@ -111,11 +108,10 @@ const mutationTypes = {
       title:null,
       close:that=>that.hideEditModal(),
       handles:[
-        {label:'新增',type:'primary',size:'mini',handle:that=>that.validateAdd()},
-        {label:'取消',type:'primary',size:'mini',handle:that=>that.hideEditModal()}
+        {...initTypes.DEFAULT_BUTTON,label:initTypes.ADD,handle:that=>that.validateAdd()},
+        {...initTypes.DEFAULT_BUTTON,label:initTypes.CANCEL,handle:that=>that.hideEditModal()}
       ],
     }
-
   }
   
   export default mutationTypes

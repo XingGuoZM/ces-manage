@@ -6,8 +6,8 @@
       <el-button 
         v-for='item in tableHandles' 
         :key='item.label'
-        :size="size || item.size" 
-        :type="item.type" 
+        :size="item.size || size" 
+        :type="item.type || type" 
         :icon='item.icon' 
         @click="item.handle(that)">{{item.label}}</el-button>
     </section>
@@ -38,8 +38,8 @@
                   <span v-if="item.type==='button'" >
                     <el-button v-for="btn in item.btnList" :key="btn.label"
                       :disabled="btn.isDisabled && btn.isDisabled(scope.row)"
-                      :type="btn.type" 
-                      :size="size || btn.size" 
+                      :type="btn.type || type" 
+                      :size="btn.size || size " 
                       :icon="btn.icon" 
                       @click="btn.handle(that,scope.row)">{{btn.label}}</el-button>
                     </span>
@@ -109,7 +109,8 @@ export default {
   props:{
     that: { type: Object, default: this },
     // 表格型号：mini,medium,small
-    size:{type:String,default:'medium'},
+    size:{type:String,default:'mini'},
+    type:{type:String,default:'primary'},
     isBorder:{type:Boolean,default:true},
     loading:{type:Boolean,default:false},
     // 表格操作

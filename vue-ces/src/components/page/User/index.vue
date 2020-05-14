@@ -3,7 +3,6 @@
     <!-- 搜索 -->
     <ces-search 
       :that='that'
-      size='mini'
       labelWidth = '50px' 
       :searchData = "searchData"
       :searchForm = "searchForm"
@@ -12,7 +11,6 @@
     <!-- 操作表格 -->
     <ces-table 
       :that='that'
-      size='mini'
       :isSelection='true'
       :isIndex='true'
       :isPagination='true'
@@ -61,7 +59,15 @@ export default {
       'editForm','editData','editRules'])
   },
   methods:{
-    ...mapActions(['init','showEditModal','hideEditModal','getData','resetData','validateAdd','confirmDel','downloadExcel','validateEdit'])
+    ...mapActions([
+      'init',
+      'showEditModal',
+      'hideEditModal',
+      'getData',
+      'resetData',
+      'confirmDel',
+      'downloadExcel',
+      'validateEdit'])
   },
   mounted(){
     this.init()
