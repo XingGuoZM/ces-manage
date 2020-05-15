@@ -46,9 +46,9 @@ export function fetch (options) {
   if (options.commitLoading) commitLoading = Loading.service(modalLoading)
 
   // 文件上传
-  // if (options.isUpload) {
-
-  // }
+  if (options.isUpload) {
+    return window.ApiUrl+options.url
+  }
   // 数据请求
   return new Promise((resolve, reject) => {
     const instance = axios.create({

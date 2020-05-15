@@ -64,6 +64,7 @@ export default {
       'showEditModal',
       'hideEditModal',
       'getData',
+      'getFileData',
       'resetData',
       'confirmDel',
       'downloadExcel',

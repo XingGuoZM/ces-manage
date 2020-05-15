@@ -1,4 +1,5 @@
 const fs=require('fs')
+const path=require('path')
 const Excel = require('exceljs')
 const formatDate = require('../util/formatDate')
 
@@ -10,7 +11,7 @@ class UserController{
         let {name,age,pageNum,pageSize}=ctx.request.body
         let tableData=[],tablePage={};
         if(name){
-            src=src.filter(item=>item===name);
+            src=src.filter(item=>item.name===name);
         }
         if(age){
             src=src.filter(item=>item.age===age)
@@ -63,7 +64,6 @@ class UserController{
                 break;
             }
         }
-
         fs.writeFileSync(__dirname+'/user.json',JSON.stringify(src))
         ctx.body={code:200,msg:'删除成功'}
     }
@@ -72,33 +72,32 @@ class UserController{
         // ctx.body='http://localhost:3000/excel/user.xlsx'
     }
     async upload(ctx){
-        let file = ctx.request.body.files;
-        // const { name,path } = file;
-        const filepath=file.path;
+        let file = ctx.request.files;
+        console.log(file)
+        const filepath = file['file']['path'];
         const data=[];
         const keys=[];
-        console.log(filepath)
-        // file = fs.readFileSync(filepath);
-        // // 将文件存到指定位置
-        // fs.writeFileSync(path.join(__dirname, 'excels/upload.xlsx'), file);
-//         const workbook = new Excel.Workbook();
+        const fileStream = await fs.readFileSync(filepath);
+        // 将文件存到指定位置
+        fs.writeFile(path.join(__dirname, '../public/excel/upload.xlsx'), fileStream,()=>{});
+        const workbook = new Excel.Workbook();
 
-//         await workbook.xlsx.readFile(__dirname+'/user.xlsx');
-//         const worksheet = workbook.getWorksheet(1); //获取第一个worksheet
-//         let obj={}
-//         worksheet.eachRow(function(row, rowNumber) {
-//             // cell.type单元格类型：6-公式 ;2-数值；3-字符串
-//             row.eachCell(function(cell, colNumber) {
-//                 if(rowNumber===1){
-//                     keys.push(cell.value);
-//                 } else {
-//                     obj[keys[colNumber-1]]=cell.value
-//                 }
+        await workbook.xlsx.readFile(path.join(__dirname, '../public/excel/upload.xlsx'));
+        const worksheet = workbook.getWorksheet(1); //获取第一个worksheet
+        let obj={}
+        worksheet.eachRow(function(row, rowNumber) {
+            // cell.type单元格类型：6-公式 ;2-数值；3-字符串
+            row.eachCell(function(cell, colNumber) {
+                if(rowNumber===1){
+                    keys.push(cell.value);
+                } else {
+                    obj[keys[colNumber-1]]=cell.value
+                }
 
-//             });
-//             if(rowNumber>1) data.push(obj)
-//         });
-        ctx.body={code:200,msg:'上传成功',data:file}
+            });
+            if(rowNumber>1) data.push(obj)
+        });
+        ctx.body={code:200,msg:'上传成功',data}
     }
 }
 module.exports= UserController

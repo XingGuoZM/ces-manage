@@ -1,6 +1,6 @@
 <!-- 搜索表单 -->
 <template>
-    <el-form ref='editForm' :size="size" inline :label-width="labelWidth" :model="editData" :rules="editRules">
+    <el-form ref='editForm' :size="size" :inline="inline" :label-width="labelWidth" :model="editData" :rules="editRules">
         <el-form-item v-for='item in editCfg' 
         :label="item.label" 
         :prop='item.prop' 
@@ -61,12 +61,23 @@
             <el-upload v-if="item.type==='upload'" 
                 class="upload-demo"
                 ref="upload"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :auto-upload="false">
+                :action="item.action"
+                :on-success="(response, file, fileList)=>item.success(that,response, file, fileList)"
+                :auto-upload="item.autoUpload">
                 <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
                 <!-- <el-button style="margin-left: 10px;" size="small" type="success">上传到服务器</el-button> -->
-                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-                </el-upload>
+                <div slot="tip" class="el-upload__tip">只能上传xlsx文件，且不超过500kb</div>
+            </el-upload>
+            <!-- 表格 -->
+            <el-table v-if="item.type==='table'" border index :data="editData.table" style="width: 100%">
+                <el-table-column type="index" label="#" align="center" width="50"></el-table-column>
+                <el-table-column v-for='col in item.cols'
+                    width='60px'
+                    :key='col.prop' 
+                    :prop='col.prop'
+                    :label="col.label">
+                </el-table-column>
+            </el-table>
         </el-form-item>
     </el-form>
 </template>
@@ -74,9 +85,14 @@
 <script>
 export default {
     props:{
+        that: { type: Object, default: this },
         labelWidth:{
             type:String,
             default:'100px'
+        },
+        inline:{
+            type:Boolean,
+            default:true
         },
         size:{
             type:String,
@@ -97,7 +113,6 @@ export default {
     },
     data () {
         return {
-            that:this
         };
     },
     methods:{

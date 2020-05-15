@@ -89,13 +89,27 @@ const mutationTypes = {
       {label:'年龄',prop:'age',type:'input',width:'280px',isEdit:true},
       {label:'性别',prop:'sex',type:'radio',radios:sexs, width:'280px',isEdit:true},
       {label:'爱好',prop:'interst',type:'checkbox',checkboxs:intersts,width:'280px',isEdit:true},
-      {label:'上传文件',prop:'upload',type:'upload',width:'280px',isEdit:false}
+      {label:'上传文件',prop:'upload',type:'upload',width:'280px',isEdit:false,
+        action:'https://jsonplaceholder.typicode.com/posts/',autoUpload:true,
+        success(that,response, file, fileList){ console.log(that);that.getFileData(response)}
+      },
+      {label:'文件数据',prop:'table',type:'table',width:'280px',isEdit:false,
+        cols:[
+          {prop:'name',label:'姓名'},
+          {prop:'age',label:'年龄'},
+          {prop:'sex',label:'性别'},
+          {prop:'interst',label:'兴趣'}
+        ]
+      }
     ],
     EDIT_DATA:{
       name:null,
       age:null,
       sex:null,
-      interst:[]
+      interst:[],
+      table:[
+        // {name:'张三',age:12,sex:'男',interst:'篮球'}
+      ],
     },
     EDIT_RULES:{
       name:[

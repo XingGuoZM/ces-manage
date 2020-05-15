@@ -5,7 +5,6 @@ import mutationTypes from '@/store/mutation-types'
 import  initTypes from '@/store/init-types'
 import {deepClone} from '@/assets/js/deepClone'
 
-
 // initial state
 const state = {
   // 查询表单
@@ -56,6 +55,7 @@ const actions = {
       // state.tablePage.total=res.data.total
       // state.tablePage.pageNum=res.data.pageNum
   },
+  
   async addData ({dispatch, commit, state}) {
     await API.User.add(state.editData)
     commit(initTypes.HIDE_EDIT_MODAL)
@@ -76,11 +76,15 @@ const actions = {
     state.searchData=deepClone(mutationTypes.SEARCH_DATA)
     dispatch('getData')
   },
+  getFileData({dispatch,state},res){
+    state.editData.table=res.data;
+  },
   validateEdit({dispatch, state},{that,type}){
     that.$refs.editForm.validate(valid=>{
       if(valid){
         switch(type){
           case initTypes.ADD:
+          case initTypes.UPLOAD:
               dispatch('addData')
             break;
           case initTypes.EDIT:
@@ -134,7 +138,10 @@ const mutations = {
         state.editForm=currForm.filter(item=>item.isEdit)
         break;
       case initTypes.UPLOAD:
-        state.editForm=currForm.filter(item=>!item.isEdit)
+        state.editForm=currForm.filter(item=>{
+          if(item.action) item.action=API.User.upload()
+          return !item.isEdit
+        })
         break;
       default:
         break;

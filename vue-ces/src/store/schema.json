@@ -1,0 +1,31 @@
+{
+    "title": "schema",
+    "type": "object",
+    "properties":{
+        "data":{
+            "tableCols":{
+                "type":"array",
+                "title":"表格列配置",
+                "children":{
+                    "name":{
+                        "title":"姓名",
+                        "type":"string",
+                        "placeholder":"请输入姓名..."
+                    },
+                    "age":{
+
+                    },
+                    "sex":{
+
+                    },
+                    "interst":{
+
+                    }
+                }
+            }
+        },
+        "locale":{
+
+        }
+    }
+}
