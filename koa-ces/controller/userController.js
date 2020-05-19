@@ -93,7 +93,6 @@ class UserController{
                 } else {
                     obj[keys[colNumber-1]]=cell.value
                 }
-
             });
             if(rowNumber>1) data.push(obj)
         });
