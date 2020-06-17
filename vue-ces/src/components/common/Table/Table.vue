@@ -125,7 +125,7 @@ export default {
     defaultSelections:{ type:[Array,Object], default:()=>null},
     // 是否显示表格索引
     isIndex:{type:Boolean,default:false},
-    indexLabel: {type:String,default:'序号'},
+    indexLabel: {type:String,default:'#'},
     // 是否显示分页
     isPagination:{type:Boolean,default:true},
     // 分页数据

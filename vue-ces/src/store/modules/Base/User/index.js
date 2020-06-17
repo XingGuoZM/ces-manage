@@ -1,5 +1,6 @@
 
 import API from '@/axios/api'
+import i18n from '@/i18n/index'
 import {MessageBox, Message} from 'element-ui'
 import mutationTypes from '@/store/mutation-types'
 import  initTypes from '@/store/init-types'
@@ -106,9 +107,9 @@ const actions = {
     commit(initTypes.HIDE_EDIT_MODAL)
   },
   confirmDel ({dispatch,state},row) {
-    MessageBox.confirm(initTypes.TIPS_TEXT, initTypes.TIPS, {
-      confirmButtonText: initTypes.CONFIRM,
-      cancelButtonText: initTypes.CANCEL,
+    MessageBox.confirm(i18n("Global@DelTips",'此操作将永久删除该条记录, 是否继续?'), i18n("Global@Tips",'提示'), {
+      confirmButtonText: i18n("Global@Confirm",'确认'),
+      cancelButtonText: i18n("Global@Cancel",'取消'),
       type: 'warning'
     }).then(() => {
       dispatch('delData',row.id)
@@ -129,15 +130,15 @@ const mutations = {
     state.modalCfg.title=type
     state.modalCfg.handles[0]={...initTypes.DEFAULT_BUTTON,label:type,handle:that=>that.validateEdit({that:that.$refs.cesEdit,type})}
     switch(type){
-      case initTypes.ADD:
+      case i18n("Global@Add","新增"):
         state.editData=deepClone(mutationTypes.EDIT_DATA)
         state.editForm=currForm.filter(item=>item.isEdit)
         break;
-      case initTypes.EDIT:
+      case i18n("Global@Edit","编辑"):
         state.editData=row
         state.editForm=currForm.filter(item=>item.isEdit)
         break;
-      case initTypes.UPLOAD:
+      case i18n("Global@Upload","上传"):
         state.editForm=currForm.filter(item=>{
           if(item.action) item.action=API.User.upload()
           return !item.isEdit

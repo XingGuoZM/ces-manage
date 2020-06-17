@@ -21,12 +21,13 @@
 
 <script>
 import treeMenu from '@/components/common/TreeMenu/treeMenu'
+import i18n from '@/i18n/index'
 export default {
   name: 'Base',
   data(){
     return {
       leftmenus:[
-        {menuName:'用户管理',menuUrl:'/Base/user'}
+        {menuName:i18n("Global@User",'用户管理'),menuUrl:'/Base/user'}
       ]
     }
   },
