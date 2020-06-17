@@ -107,9 +107,7 @@ const mutationTypes = {
       age:null,
       sex:null,
       interst:[],
-      table:[
-        // {name:'张三',age:12,sex:'男',interst:'篮球'}
-      ],
+
     },
     EDIT_RULES:{
       name:[

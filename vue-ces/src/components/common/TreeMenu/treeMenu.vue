@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="(item,index) in menus" :key="item.id" :index="item.menuUrl">
+        <div v-for="item in menus" :key="item.id" :index="item.menuUrl">
             <!-- 有子菜单 -->
             <el-submenu :index="item.menuUrl" v-if="item.children">
                 <template slot="title" >

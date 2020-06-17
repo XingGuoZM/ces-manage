@@ -33,7 +33,15 @@ export default {
           'name': '基础组件',
           'numbers': '1',
           'router': '/Base'
-        }
+        },{
+          'name': '使用说明',
+          'numbers': '2',
+          'router': '/Doc'
+        },{
+          'name': '基本配置',
+          'numbers': '3',
+          'router': '/Config'
+        },
       ]
     }
   },

@@ -39,15 +39,17 @@ class UserController{
         ctx.body={code:200,msg:'新增成功'}
     }
     edit(ctx){
-        let {id,name,age,interst}=ctx.request.body
+        let {id,name,age,interst,sex}=ctx.request.body
         let updated_at=formatDate(new Date())
         const source=fs.readFileSync(__dirname+'/user.json');
         let src=JSON.parse(source);
+
         for(let item of src){
             if(item.id===id){
-                if(item.name) item.name=name;
-                if(item.age) item.age=age;
-                if(item.interst) item.interst=interst;
+                item.name=name || item.name
+                item.age=age || item.age
+                item.sex=sex||item.sex
+                item.interst=interst||item.interst
                 item.updated_at=updated_at;
             }
         }

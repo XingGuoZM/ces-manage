@@ -4,6 +4,8 @@ import IndexLayout from '@/components/page/IndexLayout'
 
 // 基本组件
 import Base from '@/components/page/Base'
+import Doc from '@/components/page/Doc'
+import Config from '@/components/page/Config'
 import User from '@/components/page/User/index'
 // import tree from '@/components/page/Tree/index'
 // import treeTable from '@/components/page/TreeTable/index'
@@ -30,6 +32,14 @@ export default new Router({
               component: User
             }
           ]
+        },{
+          path: '/Doc',
+          name: 'Doc',
+          component: Doc
+        },{
+          path: '/Config',
+          name: 'Config',
+          component: Config
         }
       ]
     }

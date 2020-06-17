@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import treeMenu from './treeMenu'
+import treeMenu from '@/components/common/TreeMenu/treeMenu'
 export default {
   name: 'Base',
   data(){
