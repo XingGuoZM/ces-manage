@@ -33,4 +33,5 @@ const mapValue={
     "Global@TableSex":"性别",
     "Global@TableInterst":"兴趣",
     "Global@TableOperation":"操作",
+    "Global@TablePagination":"分页"
 }
