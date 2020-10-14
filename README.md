@@ -1,7 +1,7 @@
 
 | 版本      | 分支          | 前端技术栈           |  服务端技术栈   |  状态       |
 |----------|--------------|---------------------|---------------|------------|
-|  0.0.1    | daily/0.0.1 | vue+vuex+element-ui |  koa+node     |   √        |
+|  0.0.1    | daily/0.0.1 | vue+vuex+element-ui |  koa.js+node     |   √        |
 |  0.0.2    | daily/0.0.1 | vue+vuex+element-ui |  nest.js+node |   开发中... | 
 
 ### 简介  
