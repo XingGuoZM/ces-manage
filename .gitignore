@@ -17,3 +17,5 @@ koa-ces/node_modules
 *.ntvs*
 *.njsproj
 *.sln
+
+nest-ces/node_modules/
