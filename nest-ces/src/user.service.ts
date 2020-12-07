@@ -1,9 +1,16 @@
 import { Injectable } from '@nestjs/common';
+const userData = require('./user.json');
 
 @Injectable()
 export class UserService {
   queryUser(): string {
-    return 'User Query';
+    const res={
+      code:200,
+      data: {
+        tableData:userData
+      }
+    }
+    return JSON.stringify(res);
   }
   addUser(): string {
     return 'User Add';

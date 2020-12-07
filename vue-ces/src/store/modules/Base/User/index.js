@@ -51,6 +51,7 @@ const actions = {
   async getData ({ commit, state }) {
       let res=await API.User.query({...state.searchData,...state.tablePage})
       const {tableData,tablePage}=res.data.data;
+      console.log(tableData)
       state.tableData=deepClone(tableData)
       state.tablePage=deepClone(tablePage)
       // state.tablePage.total=res.data.total
