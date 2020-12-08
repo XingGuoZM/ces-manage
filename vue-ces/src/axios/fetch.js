@@ -62,7 +62,7 @@ export function fetch (options) {
 
     // 请求拦截
     instance.interceptors.request.use(function (config) {
-      config.method = options.method || 'get'
+      config.method = options.method || 'post'
       if (config.data instanceof Object) {
         config.data.memberId = localStorage.getItem('userData') && JSON.parse(localStorage.getItem('userData')).id
       }

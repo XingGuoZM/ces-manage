@@ -1,13 +1,13 @@
-import { Controller, Get,Post, Param } from '@nestjs/common';
+import { Controller, Get,Post, Param,Body } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller()
 export class UserController {
   constructor(private readonly UserService: UserService) {}
 
-  @Get('api/user/query')
-  queryUser(): string {
-    return this.UserService.queryUser();
+  @Post('api/user/query')
+  queryUser(@Body() req): string {
+    return this.UserService.queryUser(req);
   }
   @Get('api/user/add')
   addUser(): string {
