@@ -1,5 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import _ from 'lodash';
 const userData = require('./user.json');
+const fs = require('fs');
+const path = require('path');
+const dayjs = require('dayjs');
 
 @Injectable()
 export class UserService {
@@ -21,8 +25,27 @@ export class UserService {
     }
     return JSON.stringify(res);
   }
-  addUser(): string {
-    return 'User Add';
+  async addUser(req:any): Promise<string> {
+    // const {id,name,age,sex,interst} = req;
+    const filepath = path.join(__dirname,'user.json');
+    const ansBuf = await fs.readFileSync(filepath);
+
+    const ans = JSON.parse(ansBuf);
+
+    const data={
+      ...req,
+      id:+new Date(),
+      created_at:dayjs().format('YYYY-MM-DD HH:mm:ss')
+    }
+    ans.push(data);
+
+    fs.writeFileSync(filepath,JSON.stringify(ans));
+
+    return JSON.stringify({
+      code:200,
+      msg:'添加成功',
+      data
+    });
   }
   editUser(): string {
     return 'User Edit';

@@ -9,9 +9,9 @@ export class UserController {
   queryUser(@Body() req): string {
     return this.UserService.queryUser(req);
   }
-  @Get('api/user/add')
-  addUser(): string {
-    return this.UserService.addUser();
+  @Post('api/user/add')
+  async addUser(@Body() req): Promise<string> {
+    return await this.UserService.addUser(req);
   }
   @Get('api/user/edit')
   editUser(): string {
