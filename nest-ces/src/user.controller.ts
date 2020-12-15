@@ -13,12 +13,12 @@ export class UserController {
   async addUser(@Body() req): Promise<string> {
     return await this.UserService.addUser(req);
   }
-  @Get('api/user/edit')
-  editUser(): string {
-    return this.UserService.editUser();
+  @Post('api/user/edit')
+  async editUser(@Body() req): Promise<string> {
+    return await this.UserService.editUser(req);
   }
-  @Get('api/user/del')
-  delUser(): string {
-    return this.UserService.delUser();
+  @Post('api/user/del')
+  async delUser(@Body() req): Promise<string> {
+    return await this.UserService.delUser(req);
   }
 }
