@@ -11,11 +11,12 @@ export class UserService {
   // 查询
   queryUser(req:any): string {
     const {pageSize = 10, pageNum = 1} = req;
-    // console.log(pageSize*(pageNum-1),pageSize*pageNum)
+    if(!userData) return JSON.stringify({code:400,msg:'查询失败'});
     //分页
     const tableData= userData.slice(pageSize*(pageNum-1),pageSize*pageNum);
     const res={
       code:200,
+      msg:'查询成功',
       data: {
         tableData,
         tablePage:{
@@ -29,7 +30,6 @@ export class UserService {
   }
   // 添加
   async addUser(req:any): Promise<string> {
-    // const {id,name,age,sex,interst} = req;
     const filepath = path.join(__dirname,'user.json');
     const ansBuf = await fs.readFileSync(filepath);
 
