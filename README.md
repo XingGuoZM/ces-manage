@@ -15,7 +15,7 @@ $ 安装依赖 npm i
 
 $ 启动 npm run start  
 
-$ [接口说明](https://github.com/XingGuoZM/ces-manage/blob/master/koa-ces/README.md)  
+$ [接口文档](https://github.com/XingGuoZM/ces-manage/tree/daily/0.0.2/nest-ces)  
 
 ### 前端vue-ces  
 $ 安装依赖 npm i  
@@ -24,4 +24,4 @@ $ 启动 npm run dev 或者 npm run start
 
 $ 打包构建 npm run build  
 
-$ [前端说明](https://github.com/XingGuoZM/ces-manage/blob/master/vue-ces/README.md)  
+$ [前端说明](https://github.com/XingGuoZM/ces-manage/tree/daily/0.0.2/vue-ces)  
