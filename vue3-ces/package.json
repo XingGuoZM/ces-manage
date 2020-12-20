@@ -10,7 +10,11 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.4.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vuex": "^3.6.0",
+    "vue-router": "^3.4.9",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.3.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
