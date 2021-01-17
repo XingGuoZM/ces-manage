@@ -25,8 +25,7 @@
       </div>
     </div>
     <div class="content">
-      <!-- <router-view/> -->
-      user
+      <router-view/>
     </div>
   </section>
 </template>
