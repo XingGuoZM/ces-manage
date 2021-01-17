@@ -1,5 +1,5 @@
 <template>
-  <div>User</div>
+  <div>Doc</div>
 </template>
 <script>
 

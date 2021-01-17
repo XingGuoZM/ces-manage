@@ -1,16 +1,11 @@
 <template>
   <div id="app">
-      <index-layout/>
+      <router-view/>
   </div>
 </template>
 
 <script>
-import IndexLayout from '@/components/page/IndexLayout.vue'
-
 export default {
   name: 'app',
-  components: {
-    IndexLayout
-  }
 }
 </script>

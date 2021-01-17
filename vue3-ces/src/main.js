@@ -1,20 +1,18 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
+import './assets/css/reset.css'
+
 import './plugins/element.js'
+// 搜索表单
+import './assets/css/Form/search.css'
+import './assets/css/Layout/main.css'
 import router from './plugins/vueRouter'
-import store from './store'
-Vue.config.productionTip = false
 
-// new Vue({
-//   store,
-//   router,
-//   render: h => h(App),
+import 'babel-polyfill'
 
-// }).$mount('#app')
 new Vue({
   el: '#app',
   router,
-  store,
   components: { App },
   template: '<App/>'
 })
