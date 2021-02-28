@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import treeMenu from '@/components/TreeMenu'
-import i18n from '@/i18n/index'
+import treeMenu from '@/components/TreeMenu/index.vue';
+import i18n from '@/i18n/index';
 export default {
   name: 'Base',
   data(){

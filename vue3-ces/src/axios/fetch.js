@@ -2,10 +2,10 @@ import axios from 'axios'
 import qs from 'qs'
 import { Message, Loading } from 'element-ui'
 // import mutationTypes from '../store/mutaion-types'
-axios.defaults.baseURL = window.ApiUrl
+axios.defaults.baseURL = 'http://localhost:3000/api'
 axios.defaults.timeout = 30 * 1000
 // 对象转换为formData
-const transfromData = object => {
+const transfromData = (object) => {
   let ret = new FormData()
   Object.entries(object).forEach(item => {
     ret.append(item[0], item[1])
@@ -87,7 +87,7 @@ export function fetch (options) {
           Message({type: 'error', message: response.data.msg, showClose: true})
           break
       }
-    }).catch(error => {
+    }).catch((error) => {
       if (loadingInstance) loadingInstance.close()
       if (commitLoading) commitLoading.close()
       reject(error)

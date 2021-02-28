@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import IndexLayout from '@/page/IndexLayout'
+import IndexLayout from '@/page/IndexLayout.vue'
 
 // 基本组件
-import Base from '@/page/Base'
-import Doc from '@/page/Doc'
-import Config from '@/page/Config'
-import User from '@/page/User/index'
+import Base from '@/page/Base.vue'
+import Doc from '@/page/Doc.vue'
+import Config from '@/page/Config.vue'
+import User from '@/page/User/index.vue'
 // import tree from '@/components/page/Tree/index'
 // import treeTable from '@/components/page/TreeTable/index'
 // import test from '@/components/page/Test/index'

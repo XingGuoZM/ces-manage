@@ -82,7 +82,7 @@
     </el-form>
 </template>
 
-<script>
+<script lang='ts'>
 export default {
     props:{
         that: { type: Object, default: this },

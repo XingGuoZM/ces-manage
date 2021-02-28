@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 import './assets/css/reset.css'
 
-import './plugins/element.js'
+import './plugins/element.ts'
 // 搜索表单
 import './assets/css/Form/search.css'
 import './assets/css/Layout/main.css'

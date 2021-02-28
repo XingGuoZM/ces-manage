@@ -1,6 +1,13 @@
 <template>
-  <div>Doc</div>
+  <div>{{msg}}</div>
 </template>
 <script>
-
+export default {
+  name: 'Doc',
+  data(){
+    return {
+      msg:'Doc'
+    }
+  }
+}
 </script>

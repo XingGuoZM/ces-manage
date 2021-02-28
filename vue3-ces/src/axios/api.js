@@ -11,11 +11,11 @@ import {fetch} from './fetch'
 */
 export default {
   User: {
-    query: data => fetch({url: '/user/query', data,tableLoading:true}),
-    add: data => fetch({url: '/user/add', data,commitLoading:true,successMsg:true}),
-    edit: data => fetch({url: '/user/edit', data,commitLoading:true,successMsg:true}),
-    del: data => fetch({url: '/user/del', data,successMsg:true}),
-    upload:data=>fetch({url:'/user/upload',data,isUpload:true}),
-    download:data=>fetch({url:'/user/download',data,isDownload:true,successMsg:true})
+    query: (data) => fetch({url: '/user/query', data,tableLoading:true}),
+    add: (data) => fetch({url: '/user/add', data,commitLoading:true,successMsg:true}),
+    edit: (data) => fetch({url: '/user/edit', data,commitLoading:true,successMsg:true}),
+    del: (data) => fetch({url: '/user/del', data,successMsg:true}),
+    upload:(data)=>fetch({url:'/user/upload',data,isUpload:true}),
+    download:(data)=>fetch({url:'/user/download',data,isDownload:true,successMsg:true})
   }
 }

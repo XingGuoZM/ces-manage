@@ -9,18 +9,13 @@ function deepClone(obj) {
         return copy;
     }
     // Handle Array or Object
-    if (obj instanceof Array | obj instanceof Object) {
+    if (obj instanceof Array || obj instanceof Object) {
         let copy = (obj instanceof Array)?[]:{};
-    for (let attr in obj) {
-        // if (obj[attr])
+        for (let attr in obj) {
             copy[attr] = deepClone(obj[attr])
         }
         return copy
     }
     throw new Error("Unable to clone obj! Its type isn't supported.")
 }
-// function deepClone (obj) {
-//   let _obj = JSON.stringify(obj)
-//   return JSON.parse(_obj)
-// }
 export  {deepClone}

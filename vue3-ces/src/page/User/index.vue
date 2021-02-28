@@ -32,75 +32,77 @@
 </template>
 
 <script>
-import cesSearch from '@/components/Form/searchForm'
-import cesTable from '@/components/Table/Table'
-import cesModal from '@/components/Modal/Modal'
-import cesEdit from '@/components/Form/editForm'
-
+import cesSearch from '@/components/Form/searchForm.vue'
+import cesTable from '@/components/Table/Table.vue'
+import cesModal from '@/components/Modal/Modal.vue'
+import cesEdit from '@/components/Form/editForm.vue';
 
 import {editForm,searchForm,tableCols,searchHandle,tableHandles,tablePage,editRules,modalCfg,searchData,editData} from './config'
-
+// import { defineComponent } from 'vue'
 import {userData} from './mock'
-export default {
-  data () {
-    return {
-      that:this,
-      searchData,
-      searchForm,
-      searchHandle,
-      loading:false,
-      tableData:userData,
-      tableCols,
-      tableHandles,
-      tablePage,
-      modalCfg,
-      editForm,
-      editData,
-      editRules,
+
+export default  {
+    data () {
+      return {
+        that:this,
+        searchData,
+        searchForm,
+        searchHandle,
+        loading:false,
+        tableData:userData,
+        tableCols,
+        tableHandles,
+        tablePage,
+        modalCfg,
+        editForm,
+        editData,
+        editRules,
+      }
+    },
+    components:{
+      cesTable,
+      cesSearch,
+      cesModal,
+      cesEdit
+    },
+    computed:{
+    },
+    methods:{
+      init(){
+
+      },
+      showEditModal(){
+
+      },
+      hideEditModal(){
+
+      },
+      getData(){
+
+      },
+      getFileData(){
+
+      },
+      resetData(){
+
+      },
+      confirmDel(){
+
+      },
+      downloadExcel(){
+
+      },
+      validateEdit(){
+
+      }
+    },
+    mounted(){
+      this.init()
+      
     }
-  },
-  components:{
-    cesTable,
-    cesSearch,
-    cesModal,
-    cesEdit
-  },
-  computed:{
-  },
-  methods:{
-    init(){
+  
+};
 
-    },
-    showEditModal(){
-
-    },
-    hideEditModal(){
-
-    },
-    getData(){
-
-    },
-    getFileData(){
-
-    },
-    resetData(){
-
-    },
-    confirmDel(){
-
-    },
-    downloadExcel(){
-
-    },
-    validateEdit(){
-
-    }
-  },
-  mounted(){
-    this.init()
-    
-  }
-}
 </script>
 
 <style>

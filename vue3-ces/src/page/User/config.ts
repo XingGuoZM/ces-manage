@@ -18,7 +18,7 @@ const intersts=[
     {label:i18n("Global@EditInterst",'爱好'),prop:'interst',type:'checkbox',checkboxs:intersts,width:'280px',isEdit:true},
     {label:'上传文件',prop:'upload',type:'upload',width:'280px',isEdit:false,
       action:'https://jsonplaceholder.typicode.com/posts/',autoUpload:true,
-      success(that,response){ console.log(that);that.getFileData(response)}
+      success(that:any,response:any){ console.log(that);that.getFileData(response)}
     },
     {label:'文件数据',prop:'table',type:'table',width:'280px',isEdit:false,
       cols:[
@@ -31,26 +31,26 @@ const intersts=[
   ]
 const searchForm =[
   {type:'input',label:i18n("Global@SearchNameLabel","姓名"),prop:'name',width:'180px',
-    placeholder:i18n("Global@SearchNamePlaceholder",'请输入姓名...'),change:that=>that.getData()},
+    placeholder:i18n("Global@SearchNamePlaceholder",'请输入姓名...'),change:(that:any)=>that.getData()},
   {type:'input',label:i18n("Global@SearchAgeLabel",'年龄'),prop:'age',width:'180px',
-    placeholder:i18n("Global@SearchAgePlaceholder",'请输入年龄...'),change:that=>that.getData()},
+    placeholder:i18n("Global@SearchAgePlaceholder",'请输入年龄...'),change:(that:any)=>that.getData()},
   // {type:'radio',label:'性别:',prop:'sex',width:'180px',radios:sexs,change:that=>that.getData()},
   // {type:'checkbox',label:'爱好:',width:'220px',prop:'interst',checkboxs:intersts,change:that=>that.getData()}
 ]
 const tableCols =[
   {label:i18n("Global@TableName",'姓名'),prop:'name'},
   {label:i18n("Global@TableAge",'年龄'),prop:'age'},
-  {label:i18n("Global@TableSex",'性别'),prop:'sex',formatter:row=>formatSex(row)},
-  {label:i18n("Global@TableInterst",'爱好'),prop:'interst',formatter:row=>formatInterst(row)},
+  {label:i18n("Global@TableSex",'性别'),prop:'sex',formatter:(row:any)=>formatSex(row)},
+  {label:i18n("Global@TableInterst",'爱好'),prop:'interst',formatter:(row:any)=>formatInterst(row)},
   {label:i18n("Global@TableOperation",'操作'),type:'button',width:'180px',btnList:[
-    {label:i18n('Global@Edit',"编辑"),handle:(that,row)=>that.showEditModal({row,type:i18n('Global@Edit',"编辑")}),isDisabled:function(){
+    {label:i18n('Global@Edit',"编辑"),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n('Global@Edit',"编辑")}),isDisabled:function(){
       // if(row.sex==='M'){
       //   return true
       // }else if(row.sex==='F'){
       //   return false
       // }
     }},
-    {type:'danger',label:i18n('Global@Del','删除'),handle:(that,row)=>that.confirmDel(row),isDisabled:function(){
+    {type:'danger',label:i18n('Global@Del','删除'),handle:(that:any,row:any)=>that.confirmDel(row),isDisabled:function(){
       // if(row.sex==='M'){
       //   return false
       // }else if(row.sex==='F'){
@@ -60,25 +60,25 @@ const tableCols =[
   ]}
 ]
 const searchHandle=[
-  {label:i18n("Global@Query",'查询'),handle:that=>that.getData()},
-  {label:i18n("Global@Reset",'重置'),handle:that=>that.resetData()}
+  {label:i18n("Global@Query",'查询'),handle:(that:any)=>that.getData()},
+  {label:i18n("Global@Reset",'重置'),handle:(that:any)=>that.resetData()}
 ]
 
-const tableHandle=[
-  {label:i18n("Global@Add","新增"),handle:(that,row)=>that.showEditModal({row,type:i18n("Global@Add","新增")})},
-  {label:i18n("Global@Upload",'上传'),handle:(that,row)=>that.showEditModal({row,type:i18n("Global@Upload",'上传')})},
-  {label:i18n("Global@Download",'下载'),handle:(that,row)=>that.downloadExcel({row,type:i18n("Global@Download",'下载')})}
+const tableHandles=[
+  {label:i18n("Global@Add","新增"),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n("Global@Add","新增")})},
+  {label:i18n("Global@Upload",'上传'),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n("Global@Upload",'上传')})},
+  {label:i18n("Global@Download",'下载'),handle:(that:any,row:any)=>that.downloadExcel({row,type:i18n("Global@Download",'下载')})}
 ]
 
 const tablePage={
   pageSize: 10,
   total: 1,
   pageNum: 1,
-  handlePageNumChange:(that,val)=>{
+  handlePageNumChange:(that:any,val:any)=>{
     that.$store.state.User.tablePage.pageNum=val
     that.getData()
   },
-  handlePageSizeChange:(that,val)=>{
+  handlePageSizeChange:(that:any,val:any)=>{
     that.$store.state.User.tablePage.pageSize=val
     that.getData()
   }
@@ -91,10 +91,10 @@ const editRules={
 const modalCfg={
   visible:false,
   title:null,
-  close:that=>that.hideEditModal(),
+  close:(that:any)=>that.hideEditModal(),
   handles:[
-    {...DEFAULT_BUTTON,label:i18n("Global@Add",'新增'),handle:that=>that.validateAdd()},
-    {...DEFAULT_BUTTON,label:i18n("Global@Cancel",'取消'),handle:that=>that.hideEditModal()}
+    {...DEFAULT_BUTTON,label:i18n("Global@Add",'新增'),handle:(that:any)=>that.validateAdd()},
+    {...DEFAULT_BUTTON,label:i18n("Global@Cancel",'取消'),handle:(that:any)=>that.hideEditModal()}
   ]
 }
 const searchData={
@@ -117,7 +117,7 @@ const editData ={
     searchForm,
     tableCols,
     searchHandle,
-    tableHandle,
+    tableHandles,
     tablePage,
     editRules,
     modalCfg,

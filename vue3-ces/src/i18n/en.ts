@@ -1,4 +1,4 @@
-export default{
+export default {
     "Global@Title":"Admin Manage",
     "Global@Admin":"Admin",
     "Global@GlobalSetting":"Global",
