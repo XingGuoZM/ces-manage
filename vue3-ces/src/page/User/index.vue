@@ -9,14 +9,14 @@
       :searchHandle="searchHandle"></ces-search>
 
     <!-- 操作表格 -->
-    <ces-table 
+    <ces-table
       :that='that'
       :isSelection='true'
       :isIndex='true'
       :isPagination='true'
       :isHandle='true'
-      :tableData='tableData' 
-      :tableCols='tableCols' 
+      :tableData='tableData'
+      :tableCols='tableCols'
       :tableHandles='tableHandles'
       :tablePage='tablePage'></ces-table>
 
@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import cesSearch from '@/components/Form/searchForm.vue'
-import cesTable from '@/components/Table/Table.vue'
-import cesModal from '@/components/Modal/Modal.vue'
+import cesSearch from '@/components/Form/searchForm.vue';
+import cesTable from '@/components/Table/Table.vue';
+import cesModal from '@/components/Modal/Modal.vue';
 import cesEdit from '@/components/Form/editForm.vue';
 
-import {editForm,searchForm,tableCols,searchHandle,tableHandles,tablePage,editRules,modalCfg,searchData,editData} from './config'
+import {editForm,searchForm,tableCols,searchHandle,tableHandles,tablePage,editRules,modalCfg,searchData,editData} from './config';
 // import { defineComponent } from 'vue'
 import {userData} from './mock'
 
