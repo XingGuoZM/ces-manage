@@ -21,12 +21,15 @@
       :tablePage='tablePage'></ces-table>
 
     <!-- 弹窗 -->
-    <ces-modal width='520px'
-      :that='that' :modalCfg='modalCfg'>
+    <ces-modal 
+      width='520px'
+      :that='that' 
+      :modalCfg='modalCfg'>
         <ces-edit ref='cesEdit' :that='that' 
-          :editCfg='editForm' 
-          :editData='editData' 
-          :editRules='editRules' ></ces-edit>
+          :editCfg='editForm'
+          :editData='editData'
+          :editRules='editRules' >
+        </ces-edit>
       </ces-modal>
   </div>
 </template>
@@ -72,10 +75,10 @@ export default  {
 
       },
       showEditModal(){
-
+        modalCfg.visible=true
       },
       hideEditModal(){
-
+        modalCfg.visible=false
       },
       getData(){
 
