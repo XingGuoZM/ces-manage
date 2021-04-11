@@ -43,7 +43,7 @@ const tableCols =[
   {label:i18n("Global@TableSex",'性别'),prop:'sex',formatter:(row:any)=>formatSex(row)},
   {label:i18n("Global@TableInterst",'爱好'),prop:'interst',formatter:(row:any)=>formatInterst(row)},
   {label:i18n("Global@TableOperation",'操作'),type:'button',width:'180px',btnList:[
-    {label:i18n('Global@Edit',"编辑"),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n('Global@Edit',"编辑")}),isDisabled:function(){
+    {label:i18n('Global@Edit',"编辑"),handle:(that:any,row:any)=>that.showEditModal({row,title:i18n('Global@Edit',"编辑")}),isDisabled:function(){
       // if(row.sex==='M'){
       //   return true
       // }else if(row.sex==='F'){
@@ -65,9 +65,9 @@ const searchHandle=[
 ]
 
 const tableHandles=[
-  {label:i18n("Global@Add","新增"),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n("Global@Add","新增")})},
-  {label:i18n("Global@Upload",'上传'),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n("Global@Upload",'上传')})},
-  {label:i18n("Global@Download",'下载'),handle:(that:any,row:any)=>that.downloadExcel({row,type:i18n("Global@Download",'下载')})}
+  {label:i18n("Global@Add","新增"),handle:(that:any,row:any)=>that.showEditModal({row,title:i18n("Global@Add","新增")})},
+  {label:i18n("Global@Upload",'上传'),handle:(that:any,row:any)=>that.showEditModal({row,title:i18n("Global@Upload",'上传')})},
+  {label:i18n("Global@Download",'下载'),handle:(that:any,row:any)=>that.downloadExcel({row,title:i18n("Global@Download",'下载')})}
 ]
 
 const tablePage={
@@ -75,12 +75,12 @@ const tablePage={
   total: 1,
   pageNum: 1,
   handlePageNumChange:(that:any,val:any)=>{
-    that.$store.state.User.tablePage.pageNum=val
-    that.getData()
+    that.$store.state.User.tablePage.pageNum=val;
+    that.getData();
   },
   handlePageSizeChange:(that:any,val:any)=>{
-    that.$store.state.User.tablePage.pageSize=val
-    that.getData()
+    that.$store.state.User.tablePage.pageSize=val;
+    that.getData();
   }
 }
 const editRules={
@@ -110,17 +110,17 @@ const editData ={
   sex:null,
   interst:[],
 }
-  export{
-    sexs,
-    intersts,
-    editForm,
-    searchForm,
-    tableCols,
-    searchHandle,
-    tableHandles,
-    tablePage,
-    editRules,
-    modalCfg,
-    searchData,
-    editData
-  }
+export{
+  sexs,
+  intersts,
+  editForm,
+  searchForm,
+  tableCols,
+  searchHandle,
+  tableHandles,
+  tablePage,
+  editRules,
+  modalCfg,
+  searchData,
+  editData
+};

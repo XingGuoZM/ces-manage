@@ -74,8 +74,10 @@ export default  {
       init(){
 
       },
-      showEditModal(){
-        modalCfg.visible=true
+      showEditModal({row,title}){
+        console.log(row);
+        modalCfg.visible=true;
+        modalCfg.title=title;
       },
       hideEditModal(){
         modalCfg.visible=false
