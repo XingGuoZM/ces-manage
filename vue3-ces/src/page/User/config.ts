@@ -2,6 +2,7 @@
 import i18n from '../../i18n'
 import  { DEFAULT_BUTTON} from './constant'
 import {formatInterst,formatSex} from './util'
+import {MessageBox, Message} from 'element-ui'
 const sexs=[
   {label:i18n("Global@Male",'男'),value:'M'},
   {label:i18n("Global@Female",'女'),value:'F'}]
@@ -16,18 +17,18 @@ const intersts=[
     {label:i18n("Global@EditAge",'年龄'),prop:'age',type:'input',width:'280px',isEdit:true},
     {label:i18n("Global@EditSex",'性别'),prop:'sex',type:'radio',radios:sexs, width:'280px',isEdit:true},
     {label:i18n("Global@EditInterst",'爱好'),prop:'interst',type:'checkbox',checkboxs:intersts,width:'280px',isEdit:true},
-    {label:'上传文件',prop:'upload',type:'upload',width:'280px',isEdit:false,
-      action:'https://jsonplaceholder.typicode.com/posts/',autoUpload:true,
-      success(that:any,response:any){ console.log(that);that.getFileData(response)}
-    },
-    {label:'文件数据',prop:'table',type:'table',width:'280px',isEdit:false,
-      cols:[
-        {prop:'name',label:'姓名'},
-        {prop:'age',label:'年龄'},
-        {prop:'sex',label:'性别'},
-        {prop:'interst',label:'兴趣'}
-      ]
-    }
+    // {label:'上传文件',prop:'upload',type:'upload',width:'280px',isEdit:false,
+    //   action:'https://jsonplaceholder.typicode.com/posts/',autoUpload:true,
+    //   success(that:any,response:any){ console.log(that);that.getFileData(response)}
+    // },
+    // {label:'文件数据',prop:'table',type:'table',width:'280px',isEdit:false,
+    //   cols:[
+    //     {prop:'name',label:'姓名'},
+    //     {prop:'age',label:'年龄'},
+    //     {prop:'sex',label:'性别'},
+    //     {prop:'interst',label:'兴趣'}
+    //   ]
+    // }
   ]
 const searchForm =[
   {type:'input',label:i18n("Global@SearchNameLabel","姓名"),prop:'name',width:'180px',
@@ -110,6 +111,18 @@ const editData ={
   sex:null,
   interst:[],
 }
+function confirmDelete(row:any){
+  MessageBox.confirm(i18n("Global@DelTips",'此操作将永久删除该条记录, 是否继续?'), i18n("Global@Tips",'提示'), {
+    confirmButtonText: i18n("Global@Confirm",'确认'),
+    cancelButtonText: i18n("Global@Cancel",'取消'),
+    type: 'warning'
+  }).then(() => {
+    // dispatch('delData',row.id)
+  }).catch(() => {
+    
+  });
+}
+
 export{
   sexs,
   intersts,
@@ -122,5 +135,6 @@ export{
   editRules,
   modalCfg,
   searchData,
-  editData
+  editData,
+  confirmDelete
 };
