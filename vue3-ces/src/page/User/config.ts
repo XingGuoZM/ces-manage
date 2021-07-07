@@ -2,6 +2,7 @@
 import i18n from '../../i18n'
 import  { DEFAULT_BUTTON} from './constant'
 import {formatInterst,formatSex} from './util'
+import {MessageBox, Message} from 'element-ui'
 const sexs=[
   {label:i18n("Global@Male",'男'),value:'M'},
   {label:i18n("Global@Female",'女'),value:'F'}]
@@ -16,18 +17,18 @@ const intersts=[
     {label:i18n("Global@EditAge",'年龄'),prop:'age',type:'input',width:'280px',isEdit:true},
     {label:i18n("Global@EditSex",'性别'),prop:'sex',type:'radio',radios:sexs, width:'280px',isEdit:true},
     {label:i18n("Global@EditInterst",'爱好'),prop:'interst',type:'checkbox',checkboxs:intersts,width:'280px',isEdit:true},
-    {label:'上传文件',prop:'upload',type:'upload',width:'280px',isEdit:false,
-      action:'https://jsonplaceholder.typicode.com/posts/',autoUpload:true,
-      success(that:any,response:any){ console.log(that);that.getFileData(response)}
-    },
-    {label:'文件数据',prop:'table',type:'table',width:'280px',isEdit:false,
-      cols:[
-        {prop:'name',label:'姓名'},
-        {prop:'age',label:'年龄'},
-        {prop:'sex',label:'性别'},
-        {prop:'interst',label:'兴趣'}
-      ]
-    }
+    // {label:'上传文件',prop:'upload',type:'upload',width:'280px',isEdit:false,
+    //   action:'https://jsonplaceholder.typicode.com/posts/',autoUpload:true,
+    //   success(that:any,response:any){ console.log(that);that.getFileData(response)}
+    // },
+    // {label:'文件数据',prop:'table',type:'table',width:'280px',isEdit:false,
+    //   cols:[
+    //     {prop:'name',label:'姓名'},
+    //     {prop:'age',label:'年龄'},
+    //     {prop:'sex',label:'性别'},
+    //     {prop:'interst',label:'兴趣'}
+    //   ]
+    // }
   ]
 const searchForm =[
   {type:'input',label:i18n("Global@SearchNameLabel","姓名"),prop:'name',width:'180px',
@@ -43,7 +44,7 @@ const tableCols =[
   {label:i18n("Global@TableSex",'性别'),prop:'sex',formatter:(row:any)=>formatSex(row)},
   {label:i18n("Global@TableInterst",'爱好'),prop:'interst',formatter:(row:any)=>formatInterst(row)},
   {label:i18n("Global@TableOperation",'操作'),type:'button',width:'180px',btnList:[
-    {label:i18n('Global@Edit',"编辑"),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n('Global@Edit',"编辑")}),isDisabled:function(){
+    {label:i18n('Global@Edit',"编辑"),handle:(that:any,row:any)=>that.showEditModal({row,title:i18n('Global@Edit',"编辑")}),isDisabled:function(){
       // if(row.sex==='M'){
       //   return true
       // }else if(row.sex==='F'){
@@ -65,9 +66,9 @@ const searchHandle=[
 ]
 
 const tableHandles=[
-  {label:i18n("Global@Add","新增"),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n("Global@Add","新增")})},
-  {label:i18n("Global@Upload",'上传'),handle:(that:any,row:any)=>that.showEditModal({row,type:i18n("Global@Upload",'上传')})},
-  {label:i18n("Global@Download",'下载'),handle:(that:any,row:any)=>that.downloadExcel({row,type:i18n("Global@Download",'下载')})}
+  {label:i18n("Global@Add","新增"),handle:(that:any,row:any)=>that.showEditModal({row,title:i18n("Global@Add","新增")})},
+  {label:i18n("Global@Upload",'上传'),handle:(that:any,row:any)=>that.showEditModal({row,title:i18n("Global@Upload",'上传')})},
+  {label:i18n("Global@Download",'下载'),handle:(that:any,row:any)=>that.downloadExcel({row,title:i18n("Global@Download",'下载')})}
 ]
 
 const tablePage={
@@ -75,12 +76,12 @@ const tablePage={
   total: 1,
   pageNum: 1,
   handlePageNumChange:(that:any,val:any)=>{
-    that.$store.state.User.tablePage.pageNum=val
-    that.getData()
+    that.$store.state.User.tablePage.pageNum=val;
+    that.getData();
   },
   handlePageSizeChange:(that:any,val:any)=>{
-    that.$store.state.User.tablePage.pageSize=val
-    that.getData()
+    that.$store.state.User.tablePage.pageSize=val;
+    that.getData();
   }
 }
 const editRules={
@@ -110,17 +111,30 @@ const editData ={
   sex:null,
   interst:[],
 }
-  export{
-    sexs,
-    intersts,
-    editForm,
-    searchForm,
-    tableCols,
-    searchHandle,
-    tableHandles,
-    tablePage,
-    editRules,
-    modalCfg,
-    searchData,
-    editData
-  }
+function confirmDelete(row:any){
+  MessageBox.confirm(i18n("Global@DelTips",'此操作将永久删除该条记录, 是否继续?'), i18n("Global@Tips",'提示'), {
+    confirmButtonText: i18n("Global@Confirm",'确认'),
+    cancelButtonText: i18n("Global@Cancel",'取消'),
+    type: 'warning'
+  }).then(() => {
+    // dispatch('delData',row.id)
+  }).catch(() => {
+    
+  });
+}
+
+export{
+  sexs,
+  intersts,
+  editForm,
+  searchForm,
+  tableCols,
+  searchHandle,
+  tableHandles,
+  tablePage,
+  editRules,
+  modalCfg,
+  searchData,
+  editData,
+  confirmDelete
+};
