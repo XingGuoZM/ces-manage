@@ -87,6 +87,7 @@ export default  {
     showEditModal({row,title}){
       modalCfg.visible=true;
       modalCfg.title=title;
+      console.log(title)
       if(title==='编辑') this.editData=row;
     },
     hideEditModal(){
@@ -107,6 +108,9 @@ export default  {
 
     },
     validateEdit(){
+      
+    },
+    validateAdd(){
 
     }
   },
