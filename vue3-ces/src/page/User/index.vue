@@ -1,44 +1,46 @@
 <template>
   <div class="ces-main">
     <!-- 搜索 -->
-    <ces-search 
-      :that='that'
-      labelWidth = '50px' 
-      :searchData = "searchData"
-      :searchForm = "searchForm"
-      :searchHandle="searchHandle"></ces-search>
+    <ces-search
+      :that="that"
+      labelWidth="50px"
+      :searchData="searchData"
+      :searchForm="searchForm"
+      :searchHandle="searchHandle"
+    ></ces-search>
 
     <!-- 操作表格 -->
     <ces-table
-      :that='that'
-      :isSelection='true'
-      :isIndex='true'
-      :isPagination='true'
-      :isHandle='true'
-      :tableData='tableData'
-      :tableCols='tableCols'
-      :tableHandles='tableHandles'
-      :tablePage='tablePage'></ces-table>
+      :that="that"
+      :isSelection="true"
+      :isIndex="true"
+      :isPagination="true"
+      :isHandle="true"
+      :tableData="tableData"
+      :tableCols="tableCols"
+      :tableHandles="tableHandles"
+      :tablePage="tablePage"
+    ></ces-table>
 
     <!-- 弹窗 -->
-    <ces-modal 
-      width='520px'
-      :that='that' 
-      :modalCfg='modalCfg'>
-        <ces-edit ref='cesEdit' :that='that' 
-          :editCfg='editForm'
-          :editData='editData'
-          :editRules='editRules' >
-        </ces-edit>
-      </ces-modal>
+    <ces-modal width="520px" :that="that" :modalCfg="modalCfg">
+      <ces-edit
+        ref="cesEdit"
+        :that="that"
+        :editCfg="editForm"
+        :editData="editData"
+        :editRules="editRules"
+      >
+      </ces-edit>
+    </ces-modal>
   </div>
 </template>
 
 <script>
-import cesSearch from '@/components/Form/searchForm.vue';
-import cesTable from '@/components/Table/Table.vue';
-import cesModal from '@/components/Modal/Modal.vue';
-import cesEdit from '@/components/Form/editForm.vue';
+import cesSearch from "@/components/Form/searchForm.vue";
+import cesTable from "@/components/Table/Table.vue";
+import cesModal from "@/components/Modal/Modal.vue";
+import cesEdit from "@/components/Form/editForm.vue";
 
 import {
   editForm,
@@ -51,18 +53,19 @@ import {
   modalCfg,
   searchData,
   editData,
-  confirmDelete} from './config';
-import {queryData} from './request';
+  // confirmDelete,
+} from "./config";
+import Api from "@/axios/api";
 
-export default  {
-  data () {
+export default {
+  data() {
     return {
-      that:this,
+      that: this,
       searchData,
       searchForm,
       searchHandle,
-      loading:false,
-      tableData:[],
+      loading: false,
+      tableData: [],
       tableCols,
       tableHandles,
       tablePage,
@@ -70,57 +73,48 @@ export default  {
       editForm,
       editData,
       editRules,
-    }
+    };
   },
-  components:{
+  components: {
     cesTable,
     cesSearch,
     cesModal,
-    cesEdit
+    cesEdit,
   },
-  computed:{
-  },
-  methods:{
-    init(){
+  computed: {},
+  methods: {
+    init() {
       this.getData();
     },
-    showEditModal({row,title}){
-      modalCfg.visible=true;
-      modalCfg.title=title;
-      console.log(title)
-      if(title==='编辑') this.editData=row;
+    showEditModal({ row, title }) {
+      modalCfg.visible = true;
+      modalCfg.title = title;
+      console.log(title);
+      if (title === "编辑") this.editData = row;
     },
-    hideEditModal(){
-      modalCfg.visible=false
+    hideEditModal() {
+      modalCfg.visible = false;
     },
-    async getData(){
-      const res = await queryData();
-      this.tableData=res;
+    async getData() {
+      const res = await Api.User.query({ pageSize: 10, pageNum: 1 });
+      console.log(res.data.data.tableData);
+      this.tableData = res.data.data.tableData;
     },
-    getFileData(){
-
+    getFileData() {},
+    resetData() {},
+    async confirmDel(row) {
+      const res = await Api.User.del({ id: row.id });
+      console.log(res);
     },
-    resetData(){
-      
-    },
-    confirmDel:(row)=>confirmDelete(row),
-    downloadExcel(){
-
-    },
-    validateEdit(){
-      
-    },
-    validateAdd(){
-
-    }
+    downloadExcel() {},
+    validateEdit() {},
+    validateAdd() {},
   },
-  mounted(){
+  mounted() {
     this.init();
-  }
+  },
 };
-
 </script>
 
 <style>
-
 </style>

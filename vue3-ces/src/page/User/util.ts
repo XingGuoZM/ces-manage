@@ -10,7 +10,7 @@ const formatSex=(row:any)=>{
 const formatInterst=(row:any)=>{
   let info:Array<string> = []
   intersts.forEach(item=>{
-    row.interst.forEach((i:string)=>{
+    row?.interst?.forEach((i:string)=>{
       if(i===item.value) info.push(item.label)
     })
   })

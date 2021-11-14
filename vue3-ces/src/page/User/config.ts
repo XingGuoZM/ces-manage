@@ -51,7 +51,10 @@ const tableCols =[
       //   return false
       // }
     }},
-    {type:'danger',label:i18n('Global@Del','删除'),handle:(that:any,row:any)=>that.confirmDel(row),isDisabled:function(){
+    {type:'danger',label:i18n('Global@Del','删除'),handle:(that:any,row:any)=>{
+      console.log(row);
+      that.confirmDel(row)
+    },isDisabled:function(){
       // if(row.sex==='M'){
       //   return false
       // }else if(row.sex==='F'){
